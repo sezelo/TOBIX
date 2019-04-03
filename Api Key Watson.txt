@@ -1,0 +1,3 @@
+zZgajaLjVQpv_NDEYpSKtQF42LoRxzfSnqlbf0gXOE0t
+
+https://gateway.watsonplatform.net/assistant/api
