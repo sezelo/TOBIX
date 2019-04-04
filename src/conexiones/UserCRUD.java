@@ -14,7 +14,7 @@ public class UserCRUD {
 	
 	public void insert(int id, String sex, String email, String name, String lastN, String lastN2, String password, String identityP) throws SQLException {
 	 	Connection con = db.openConnection();
-        String sql = "insert into " + "Supervisor" + " values( " + "?,?,?,?,?,?,?,?" + ")";
+        String sql = "insert into " + "User" + " values( " + "?,?,?,?,?,?,?,?" + ")";
         try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 
 				pstmt.setObject(1, id);
@@ -33,7 +33,7 @@ public class UserCRUD {
 	
 	public void insertComments(String id,String name, String description) throws SQLException {
 	 	Connection con = db.openConnection();
-        String sql = "insert into " + "Block_Activity" + " values( " + "?,?,?" + ")";
+        String sql = "insert into " + "Comments" + " values( " + "?,?,?" + ")";
         try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 
 				pstmt.setObject(1, id);
@@ -45,4 +45,23 @@ public class UserCRUD {
         con.close();
     }
 	
+	public void delete(int id) throws SQLException {
+	 	Connection con = db.openConnection();
+        String sql = "delete from " + "User" + " where UserID = "+id+"";
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+	            pstmt.execute();	                                 
+        }
+        con.close();
+    }
+	
+	public void deleteComment(String id,String activityName) throws SQLException {
+	 	Connection con = db.openConnection();
+        String sql = "delete from " + "Comments" + " where UserID = "+id+"and ActivityName = "+"'"+activityName+"'"+"";
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+	            pstmt.execute();	                                 
+        }
+        con.close();
+    }
 }

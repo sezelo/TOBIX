@@ -9,7 +9,7 @@ public class Main {
 		DBConnection db = new DBConnection();
 		ActivityCrud x = new ActivityCrud(db);
 		try {
-			x.insert("Informativo", "Activida Informativa", "30/03/2019", "12:30:00", "13:30:00", "WOW");
+			x.delete("Activida Informativa");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

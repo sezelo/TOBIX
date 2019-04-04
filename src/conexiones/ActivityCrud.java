@@ -55,4 +55,24 @@ public class ActivityCrud {
         }
         con.close();
     }
+	
+	public void delete(String name) throws SQLException {
+	 	Connection con = db.openConnection();
+        String sql = "delete from " + "Activity" + " where ActivityName = "+"'"+name+"'"+"";
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+	            pstmt.execute();	                                 
+        }
+        con.close();
+    }
+	
+	public void deleteSupervisorActivity(String name,int id) throws SQLException {
+	 	Connection con = db.openConnection();
+        String sql = "delete from " + "Activity_Supervisor" + " where ActivityName = "+"'"+name+"'"+"and SupervisorID =+"+id+"+";
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+	            pstmt.execute();	                                 
+        }
+        con.close();
+    }
 }

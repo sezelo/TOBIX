@@ -41,13 +41,33 @@ public class BlockCRUD {
         con.close();
     }
 	
-	public void insertBlockActivity(String name,String topic) throws SQLException {
+	public void insertBlockActivity(String activityName,String topic) throws SQLException {
 	 	Connection con = db.openConnection();
         String sql = "insert into " + "Block_Activity" + " values( " + "?,?" + ")";
         try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 
 				pstmt.setObject(1, topic);
-	            pstmt.setObject(2, name);
+	            pstmt.setObject(2, activityName);
+
+	            pstmt.execute();	                                 
+        }
+        con.close();
+    }
+	
+	public void delete(String topic) throws SQLException {
+	 	Connection con = db.openConnection();
+        String sql = "delete from " + "Block" + " where Topic = "+"'"+topic+"'"+"";
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+	            pstmt.execute();	                                 
+        }
+        con.close();
+    }
+	
+	public void deleteBlockActivity(String topic, String activityName) throws SQLException {
+	 	Connection con = db.openConnection();
+        String sql = "delete from " + "Block_Activity" + " where Topic = "+"'"+topic+"'"+"and ActivityName = "+"'"+activityName+"'"+"";
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
 
 	            pstmt.execute();	                                 
         }

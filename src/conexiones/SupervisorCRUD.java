@@ -30,4 +30,15 @@ public class SupervisorCRUD {
         }
         con.close();
     }
+	
+	public void delete(int id) throws SQLException {
+	 	Connection con = db.openConnection();
+        String sql = "delete from " + "Supervisor" + " where SupervisorID = "+id+"";
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+	            pstmt.execute();	                                 
+        }
+        con.close();
+    }
 }
+
