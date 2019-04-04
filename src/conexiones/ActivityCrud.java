@@ -1,14 +1,8 @@
 package conexiones;
 
 import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -20,7 +14,7 @@ public class ActivityCrud {
 		this.db = db;
 	}
 	
-	public void insertOriginalData(String type, String name, String date, String sTime, String fTime, String description) throws SQLException {
+	public void insert(String type, String name, String date, String sTime, String fTime, String description) throws SQLException {
 		 	Connection con = db.openConnection();
 	        String sql = "insert into " + "Activity" + " values( " + "?,?,?,?,?,?" + ")";
 	        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
@@ -48,4 +42,17 @@ public class ActivityCrud {
 	        }
 	        con.close();
 	    }
+	
+	public void insertSupervisorActivity(int id,String name) throws SQLException {
+	 	Connection con = db.openConnection();
+        String sql = "insert into " + "Activity_Supervisor" + " values( " + "?,?" + ")";
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+				pstmt.setObject(1, id);
+	            pstmt.setObject(2, name);
+
+	            pstmt.execute();	                                 
+        }
+        con.close();
+    }
 }
